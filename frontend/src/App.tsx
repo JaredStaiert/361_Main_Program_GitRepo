@@ -1,4 +1,4 @@
-import {AppShell, Burger, Group, NavLink} from "@mantine/core";
+import {AppShell, Burger, Button, Group, NavLink} from "@mantine/core";
 import {useDisclosure} from "@mantine/hooks";
 import {Link, Route, Routes} from "react-router";
 import DashboardPage from "./dashboard/DashboardPage.tsx";
@@ -6,6 +6,7 @@ import BudgetPage from "./budget/BudgetPage.tsx";
 import ImportPage from "./import/ImportPage.tsx";
 import ToolPage from "./tool/ToolPage.tsx";
 import FinancePage from "./finance/FinancePage.tsx";
+import {hunterGreen} from "./theme.ts";
 
 function App() {
     const [mobileOpened, {toggle: toggleMobile}] = useDisclosure();
@@ -28,12 +29,15 @@ function App() {
                     The burger icon is always visible
                 </Group>
             </AppShell.Header>
-            <AppShell.Navbar>
+            <AppShell.Navbar
+                bg={hunterGreen[9]}
+            >
                 <NavLink label="Dashboard" component={Link} to="/" />
-                <NavLink label="budget" component={Link} to="/budget" />
-                <NavLink label="import" component={Link} to="/import" />
-                <NavLink label="finance" component={Link} to="/finance" />
-                <NavLink label="tools" component={Link} to="/tools" />
+                <NavLink label="Budget" component={Link} to="/budget" />
+                <NavLink label="Import" component={Link} to="/import" />
+                <NavLink label="Finance" component={Link} to="/finance" />
+                <NavLink label="Tools" component={Link} to="/tools" />
+                <Button color="indigoDye">Settings</Button>
             </AppShell.Navbar>
             <AppShell.Main>
                 <Routes>

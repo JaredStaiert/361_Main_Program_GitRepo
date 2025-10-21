@@ -1,7 +1,7 @@
 import {Card, Container, createTheme, type MantineColorsTuple, Paper, rem, Select} from "@mantine/core";
 import type {MantineThemeOverride} from "@mantine/core";
 
-const vermillion: MantineColorsTuple = [
+const vermilion: MantineColorsTuple = [
     "#ffebe9",
     "#fed7d4",
     "#f4ada8",
@@ -12,9 +12,33 @@ const vermillion: MantineColorsTuple = [
     "#c5271e",
     "#b02019",
     "#9b1512"
-
 ]
 
+const indigoDye: MantineColorsTuple = [
+    "#f1f4f8",
+    "#e3e6ea",
+    "#c2cad5",
+    "#9fadc2",
+    "#8194b1",
+    "#6e85a7",
+    "#647da3",
+    "#536b8f",
+    "#485f81",
+    "#344966"
+]
+
+export const hunterGreen: MantineColorsTuple = [
+    "#f1f9f2",
+    "#e2efe4",
+    "#c1dec5",
+    "#9dcca4",
+    "#7ebd87",
+    "#6bb475",
+    "#60b06b",
+    "#509a5a",
+    "#45894f",
+    "#2c5f34"
+]
 
 const CONTAINER_SIZES: Record<string, string> = {
     xxs: rem("200px"),
@@ -29,7 +53,9 @@ const CONTAINER_SIZES: Record<string, string> = {
 export const mantineTheme: MantineThemeOverride = createTheme({
     /** Put your mantine theme override here */
     colors: {
-        vermillion
+        vermilion,
+        indigoDye,
+        hunterGreen
     },
     fontSizes: {
         xs: rem("12px"),
@@ -53,7 +79,7 @@ export const mantineTheme: MantineThemeOverride = createTheme({
         "2xl": rem("28px"),
         "3xl": rem("32px"),
     },
-    primaryColor: "vermillion",
+    primaryColor: "vermilion",
     components: {
         /** Put your mantine component override here */
         Container: Container.extend({
