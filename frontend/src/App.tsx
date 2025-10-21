@@ -1,16 +1,26 @@
-import {AppShell, Burger, Button, Group, NavLink} from "@mantine/core";
+import {AppShell, Burger, Button, Group, NavLink, Stack} from "@mantine/core";
 import {useDisclosure} from "@mantine/hooks";
-import {Link, Route, Routes} from "react-router";
+import {Link, Route, Routes} from "react-router-dom";
 import DashboardPage from "./dashboard/DashboardPage.tsx";
 import BudgetPage from "./budget/BudgetPage.tsx";
 import ImportPage from "./import/ImportPage.tsx";
 import ToolPage from "./tool/ToolPage.tsx";
 import FinancePage from "./finance/FinancePage.tsx";
-import {hunterGreen} from "./theme.ts";
+import {useState} from "react";
+import {jetGrey} from "./globalColors.ts";
 
 function App() {
     const [mobileOpened, {toggle: toggleMobile}] = useDisclosure();
-    const [desktopOpened, {toggle: toggleDesktop}] = useDisclosure(true);
+    const [desktopOpened, {toggle: toggleDesktop}] = useDisclosure(false);
+    const [active, setActive] = useState(0);
+
+    const navLinks = [
+        {label: "Dashboard", to: "/"},
+        {label: "Budget", to: "/budget"},
+        {label: "Import", to: "/import"},
+        {label: "Finance", to: "/finance"},
+        {label: "Tools", to: "/tools"}
+    ];
 
     return (
         <AppShell
@@ -22,33 +32,47 @@ function App() {
                 collapsed: {mobile: !mobileOpened, desktop: !desktopOpened},
             }}
         >
-            <AppShell.Header>
+            <AppShell.Header
+                bg={jetGrey[8]}
+            >
                 <Group h="100%" px="md">
                     <Burger opened={mobileOpened} onClick={toggleMobile} hiddenFrom="sm" size="sm"/>
                     <Burger opened={desktopOpened} onClick={toggleDesktop} visibleFrom="sm" size="sm"/>
-                    The burger icon is always visible
                 </Group>
             </AppShell.Header>
             <AppShell.Navbar
-                bg={hunterGreen[9]}
+                bg={"jetGrey"}
+                w="10em"
             >
-                <NavLink label="Dashboard" component={Link} to="/" />
-                <NavLink label="Budget" component={Link} to="/budget" />
-                <NavLink label="Import" component={Link} to="/import" />
-                <NavLink label="Finance" component={Link} to="/finance" />
-                <NavLink label="Tools" component={Link} to="/tools" />
-                <Button color="indigoDye">Settings</Button>
+                <Stack>
+                    {navLinks.map((element, index) => (
+                        <NavLink
+                            key={`${element.label}_${index}`}
+                            active={index === active}
+                            label={element.label}
+                            component={Link}
+                            to={element.to}
+                            color={"redWood"}
+                            variant={"filled"}
+                            autoContrast
+                            onClick={() => setActive(index)}
+                        ></NavLink>
+                    ))}
+                    <Button>Settings</Button>
+
+                </Stack>
             </AppShell.Navbar>
             <AppShell.Main>
                 <Routes>
-                    <Route path="/" element={<DashboardPage/>} />
-                    <Route path="/budget" element={<BudgetPage/>} />
-                    <Route path="/import" element={<ImportPage/>} />
-                    <Route path="/finance" element={<FinancePage/>} />
-                    <Route path="/tools" element={<ToolPage/>} />
+                    <Route path="/" element={<DashboardPage/>}/>
+                    <Route path="/budget" element={<BudgetPage/>}/>
+                    <Route path="/import" element={<ImportPage/>}/>
+                    <Route path="/finance" element={<FinancePage/>}/>
+                    <Route path="/tools" element={<ToolPage/>}/>
                     {/*<Route path="/login" element={<DashboardPage/>} />*/}
                 </Routes>
             </AppShell.Main>
+
         </AppShell>
     );
 }
