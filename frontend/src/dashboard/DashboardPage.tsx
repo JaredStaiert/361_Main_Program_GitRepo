@@ -1,7 +1,8 @@
-import {Button, Group, Stack, Title} from "@mantine/core";
+import {Group, Stack, Title} from "@mantine/core";
 import OverviewCard, {type OverviewCardProps} from "../components/OverviewCard.tsx";
 import ToolWidgetCard from "../components/ToolWidgetCard.tsx";
 import {type ToolWidgetDesc} from "../components/Card.ts";
+import DashboardEditViewModal from "../components/modals/DashboardEditViewModal.tsx";
 
 function DashboardPage() {
     const toolArray: ToolWidgetDesc[] = [
@@ -32,7 +33,7 @@ function DashboardPage() {
             <Stack>
                 <Group justify={"space-between"}>
                     <Title order={1}>Dashboard</Title>
-                    <Button color={"veridian"}>Change View</Button>
+                    <DashboardEditViewModal/>
                 </Group>
                 <OverviewCard key={crypto.randomUUID()} {...budgetProps} />
                 <OverviewCard key={crypto.randomUUID()} {...financeProps} />

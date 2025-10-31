@@ -1,4 +1,4 @@
-import {AppShell, Burger, Button, Group, NavLink, Stack} from "@mantine/core";
+import {AppShell, Burger, Group, NavLink, Stack} from "@mantine/core";
 import {useDisclosure} from "@mantine/hooks";
 import {Link, Route, Routes} from "react-router-dom";
 import DashboardPage from "./dashboard/DashboardPage.tsx";
@@ -8,6 +8,7 @@ import ToolPage from "./tool/ToolPage.tsx";
 import FinancePage from "./finance/FinancePage.tsx";
 import {useState} from "react";
 import {jetGrey} from "./globalColors.ts";
+import GlobalSettingsModal from "./components/modals/GlobalSettingsModal.tsx";
 
 function App() {
     const [mobileOpened, {toggle: toggleMobile}] = useDisclosure();
@@ -58,7 +59,7 @@ function App() {
                             onClick={() => setActive(index)}
                         ></NavLink>
                     ))}
-                    <Button>Settings</Button>
+                    <GlobalSettingsModal/>
 
                 </Stack>
             </AppShell.Navbar>
