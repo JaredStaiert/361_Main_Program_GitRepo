@@ -1,11 +1,17 @@
-import type {JSX} from "react";
 import CalculatorSimple from "./tool_components/CalculatorSimple.tsx";
 import CalculatorInterest from "./tool_components/CalculatorInterest.tsx";
+import TreeMapComponent from "./charts/TreeMapComponent.tsx";
 
-export interface OverviewCardProps {
-    title: string;
-    components: JSX.Element[];
-    pageLink: string;
+export const OverviewComponents = {
+    TreeMap: TreeMapComponent,
+} as const;
+
+export type OverviewComponentType = keyof typeof OverviewComponents;
+
+export interface OverviewCompDesc {
+    id: string;
+    type: OverviewComponentType;
+    props?: Record<string, unknown>;
 }
 
 export const ToolWidgetComponents = {
@@ -15,7 +21,7 @@ export const ToolWidgetComponents = {
 
 export type ToolWidgetType = keyof typeof ToolWidgetComponents;
 
-export interface ToolWidgetTool {
+export interface ToolWidgetDesc {
     id: ToolWidgetType;
     type: ToolWidgetType;
     props?: Record<string, any>;

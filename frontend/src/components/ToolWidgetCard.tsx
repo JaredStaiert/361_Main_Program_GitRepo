@@ -1,9 +1,9 @@
 import {type JSX} from "react";
-import {ToolWidgetComponents, type ToolWidgetTool} from "./Card.ts";
+import {ToolWidgetComponents, type ToolWidgetDesc} from "./Card.ts";
 import {Button, Card, Group, Text} from "@mantine/core";
 
 interface ToolWidgetCardProps {
-    widgets: ToolWidgetTool[]
+    widgets: ToolWidgetDesc[]
 }
 
 function ToolWidgetCard(props: ToolWidgetCardProps): JSX.Element {

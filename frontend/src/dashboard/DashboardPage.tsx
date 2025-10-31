@@ -1,10 +1,10 @@
 import {Stack} from "@mantine/core";
-import OverviewCard from "../components/OverviewCard.tsx";
+import OverviewCard, {type OverviewCardProps} from "../components/OverviewCard.tsx";
 import ToolWidgetCard from "../components/ToolWidgetCard.tsx";
-import type {ToolWidgetTool} from "../components/Card.ts";
+import {type ToolWidgetDesc} from "../components/Card.ts";
 
 function DashboardPage() {
-    const toolArray: ToolWidgetTool[] = [
+    const toolArray: ToolWidgetDesc[] = [
         {
             id: "Simple",
             type: "Simple",
@@ -15,10 +15,16 @@ function DashboardPage() {
         }
     ]
 
+    const budgetProps: OverviewCardProps = {
+        title: "Budget Overview",
+        components: [{id: crypto.randomUUID(), type: "TreeMap"}],
+        pageLink: "page link here"
+    }
+
     return (
         <>
             <Stack>
-                <OverviewCard components={[]} pageLink={""} {...{title: "Budget Summary"}}/>
+                <OverviewCard key={crypto.randomUUID()} {...budgetProps} />
                 <OverviewCard components={[]} pageLink={""} {...{title: "Finance Overview"}}/>
                 <ToolWidgetCard widgets={toolArray}></ToolWidgetCard>
             </Stack>
