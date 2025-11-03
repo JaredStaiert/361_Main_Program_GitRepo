@@ -9,6 +9,8 @@ import FinancePage from "./finance/FinancePage.tsx";
 import {useState} from "react";
 import {jetGrey} from "./globalColors.ts";
 import GlobalSettingsModal from "./components/modals/GlobalSettingsModal.tsx";
+import LoginPage from "./login/LoginPage.tsx";
+import ProtectedRoute from "./auth/ProtectedRoute.tsx";
 
 function App() {
     const [mobileOpened, {toggle: toggleMobile}] = useDisclosure();
@@ -65,12 +67,14 @@ function App() {
             </AppShell.Navbar>
             <AppShell.Main>
                 <Routes>
-                    <Route path="/" element={<DashboardPage/>}/>
-                    <Route path="/budget" element={<BudgetPage/>}/>
-                    <Route path="/import" element={<ImportPage/>}/>
-                    <Route path="/finance" element={<FinancePage/>}/>
-                    <Route path="/tools" element={<ToolPage/>}/>
-                    {/*<Route path="/login" element={<DashboardPage/>} />*/}
+                    <Route path={"/login"} element={<LoginPage />}/>
+                    <Route path="/*" element={<ProtectedRoute/>}>
+                        <Route index element={<DashboardPage/>}/>
+                        <Route path="budget" element={<BudgetPage/>}/>
+                        <Route path="import" element={<ImportPage/>}/>
+                        <Route path="finance" element={<FinancePage/>}/>
+                        <Route path="tools" element={<ToolPage/>}/>
+                    </Route>
                 </Routes>
             </AppShell.Main>
 
