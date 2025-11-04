@@ -1,6 +1,7 @@
 import type {JSX} from "react";
 import {Button, Card, Group, Text} from "@mantine/core";
 import {type OverviewCompDesc, OverviewComponents} from "./Card.ts";
+import {useNavigate} from "react-router-dom";
 
 export interface OverviewCardProps {
     title: string;
@@ -9,7 +10,7 @@ export interface OverviewCardProps {
 }
 
 function OverviewCard(props: OverviewCardProps): JSX.Element {
-
+    const navigate = useNavigate();
 
     return (
         <>
@@ -25,7 +26,7 @@ function OverviewCard(props: OverviewCardProps): JSX.Element {
                 </Card.Section>
                 <Card.Section>
                     <Group justify={"right"}>
-                        <Button>{"View " + props.title.split(" ")[0]}</Button>
+                        <Button onClick={() => {navigate(props.pageLink);}}>{"View " + props.title.split(" ")[0]}</Button>
                     </Group>
                 </Card.Section>
             </Card>

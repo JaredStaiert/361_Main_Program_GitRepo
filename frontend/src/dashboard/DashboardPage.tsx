@@ -24,13 +24,13 @@ function DashboardPage() {
     const budgetProps: OverviewCardProps = {
         title: "Budget Overview",
         components: [{id: crypto.randomUUID(), type: "TreeMap"}],
-        pageLink: "page link here"
+        pageLink: "/budget"
     }
 
     const financeProps: OverviewCardProps = {
         title: "Finance Overview",
         components: [{id: crypto.randomUUID(), type: "StockTable"}],
-        pageLink: "page link here"
+        pageLink: "/finance"
     }
     const [overviewCards, setOverviewCards] =
         useState<OverviewCardProps[]>([budgetProps, financeProps]);
