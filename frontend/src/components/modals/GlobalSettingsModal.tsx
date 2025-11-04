@@ -1,6 +1,7 @@
 import {useDisclosure} from "@mantine/hooks";
 import {Button, Modal} from "@mantine/core";
 import type {JSX} from "react";
+import AdvancedNotificationModal from "./AdvancedNotificationModal.tsx";
 
 function GlobalSettingsModal(): JSX.Element {
     const [opened, {open, close}] = useDisclosure(false);
@@ -18,8 +19,10 @@ function GlobalSettingsModal(): JSX.Element {
 
 function GlobalModalContent(): JSX.Element {
 
+    // TODO: refactor modal AdvancedNotificationModal
     return (
         <>
+            <AdvancedNotificationModal/>
             <Button>RESET GLOBAL SETTINGS</Button>
         </>
     );

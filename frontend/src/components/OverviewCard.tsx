@@ -1,5 +1,5 @@
 import type {JSX} from "react";
-import {Button, Card, Text} from "@mantine/core";
+import {Button, Card, Group, Text} from "@mantine/core";
 import {type OverviewCompDesc, OverviewComponents} from "./Card.ts";
 
 export interface OverviewCardProps {
@@ -24,7 +24,9 @@ function OverviewCard(props: OverviewCardProps): JSX.Element {
                     })}
                 </Card.Section>
                 <Card.Section>
-                    <Button>{"View " + props.title.split(" ")[0]}</Button>
+                    <Group justify={"right"}>
+                        <Button>{"View " + props.title.split(" ")[0]}</Button>
+                    </Group>
                 </Card.Section>
             </Card>
         </>

@@ -3,8 +3,12 @@ import OverviewCard, {type OverviewCardProps} from "../components/OverviewCard.t
 import ToolWidgetCard from "../components/ToolWidgetCard.tsx";
 import {type ToolWidgetDesc} from "../components/Card.ts";
 import DashboardEditViewModal from "../components/modals/DashboardEditViewModal.tsx";
+import DashboardExplanationCard from "../components/cards/DashboardExplanationCard.tsx";
+import {useState} from "react";
 
 function DashboardPage() {
+    // TODO: Refactor tool widgets to be more modular along with other mapping
+
     const toolArray: ToolWidgetDesc[] = [
         {
             id: "Simple",
@@ -24,19 +28,25 @@ function DashboardPage() {
 
     const financeProps: OverviewCardProps = {
         title: "Finance Overview",
-        components: [],
+        components: [{id: crypto.randomUUID(), type: "StockTable"}],
         pageLink: "page link here"
     }
+    const [overviewCards, setOverviewCards] =
+        useState<OverviewCardProps[]>([budgetProps, financeProps]);
 
     return (
         <>
             <Stack>
                 <Group justify={"space-between"}>
                     <Title order={1}>Dashboard</Title>
-                    <DashboardEditViewModal/>
+                    <DashboardEditViewModal setOverviewCards={setOverviewCards}/>
                 </Group>
-                <OverviewCard key={crypto.randomUUID()} {...budgetProps} />
-                <OverviewCard key={crypto.randomUUID()} {...financeProps} />
+                <DashboardExplanationCard/>
+                {overviewCards.map((props) => (
+                    <OverviewCard key={crypto.randomUUID()} {...props} />
+                ))}
+                {/*<OverviewCard key={crypto.randomUUID()} {...budgetProps} />*/}
+                {/*<OverviewCard key={crypto.randomUUID()} {...financeProps} />*/}
                 <ToolWidgetCard widgets={toolArray}></ToolWidgetCard>
             </Stack>
         </>
