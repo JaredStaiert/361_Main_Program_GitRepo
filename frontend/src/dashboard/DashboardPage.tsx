@@ -5,6 +5,7 @@ import {type ToolWidgetDesc} from "../components/Card.ts";
 import DashboardEditViewModal from "../components/modals/DashboardEditViewModal.tsx";
 import DashboardExplanationCard from "../components/cards/DashboardExplanationCard.tsx";
 import {useState} from "react";
+import FirstTimeBudgetCard from "../components/cards/FirstTimeBudgetCard.tsx";
 
 function DashboardPage() {
     // TODO: Refactor tool widgets to be more modular along with other mapping
@@ -41,6 +42,7 @@ function DashboardPage() {
                     <Title order={1}>Dashboard</Title>
                     <DashboardEditViewModal setOverviewCards={setOverviewCards}/>
                 </Group>
+                <FirstTimeBudgetCard/>
                 <DashboardExplanationCard/>
                 {overviewCards.map((props) => (
                     <OverviewCard key={crypto.randomUUID()} {...props} />
